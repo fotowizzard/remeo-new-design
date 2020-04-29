@@ -1,0 +1,20 @@
+<krpano>
+	
+	<style name="plus_bar"
+		type="container"
+
+		align="center"
+
+		bgcolor="0xffffff" bgalpha="1" bgroundedge="2" 
+
+		width="28" height="4"
+
+		set_hover="
+			copy(bgcolor, accent_color);
+		"
+		set_idle="
+			set(bgcolor, 0xffffff);
+		"
+	/>
+	
+</krpano>

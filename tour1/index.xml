@@ -1,0 +1,31 @@
+﻿<krpano version="1.20" title="Virtual Tour">
+
+	<include url="../app/kml/app.xml" />
+	<include url="settings.xml" />
+
+	<scene name="scene_entry" title="entry" onstart="" thumburl="panos/entry.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="mfov" fov="120" maxpixelzoom="0.7" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/entry.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/entry.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1792,3584" />
+		</image>
+
+	</scene>
+
+	<scene name="scene_livingroom" title="livingroom" onstart="" thumburl="panos/livingroom.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="mfov" fov="120" maxpixelzoom="0.7" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/livingroom.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/livingroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,768,1792,3584" />
+		</image>
+
+	</scene>
+
+
+</krpano>

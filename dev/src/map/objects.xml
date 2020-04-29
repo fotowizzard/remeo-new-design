@@ -1,0 +1,126 @@
+<krpano>
+	
+	<style name="map__wrapper" style="invisible_content|visible|backdropblur" keep="true"
+		type="container"
+
+		align="righttop" x="0" y="0"
+
+		bgcolor="0x000000" bgalpha="0.4" backdropblur="5"
+		bgborder="1 0xffffff 0.1" 
+
+		bgalpha.firefox="0.8"
+
+		width_compact="300" height_compact="300"
+		width_expanded="0" height_expanded="0"
+		width="300" height="300"
+
+		state="1"
+
+		resize="
+			copy(width_expanded, stagewidth);
+			calc(height_expanded, stageheight / 2);
+
+			if (state == 2,
+				copy(width, width_expanded);
+				copy(height, height_expanded);
+			);
+		"
+
+		expand="
+			set(state, 2);
+			tween(width|height, calc(width_expanded + '|' + height_expanded), 0.5, easeInOutQuad);
+		"
+		compact="
+			set(state, 1);
+			tween(width|height, calc(width_compact + '|' + height_compact), 0.5, easeInOutQuad);
+		"
+	/>
+
+	<style name="map__expand"
+		type="container"
+
+		align="leftbottom" x="10" y="10"
+
+		bgcolor="0x000000" bgalpha="0.8"
+		bgborder="1 0xffffff 0.1"
+
+		width="40" height="40"
+
+		onover="
+			callwith(layer[expand__bar_1], set_hover);
+			callwith(layer[expand__bar_2], set_hover);
+		"
+
+		onout="
+			callwith(layer[expand__bar_1], set_idle);
+			callwith(layer[expand__bar_2], set_idle);
+		"
+
+		ondown="
+			callwith(layer[expand__bar_1], press);
+			callwith(layer[expand__bar_2], press);
+		"
+
+		onup="
+			callwith(layer[expand__bar_1], unpress);
+			callwith(layer[expand__bar_2], unpress);	
+		"
+		set_minus="
+			callwith(layer[expand__bar_1], turn_in);
+			callwith(layer[expand__bar_2], hide);
+		"
+		set_plus="
+			callwith(layer[expand__bar_1], turn_out);
+			callwith(layer[expand__bar_2], show);
+		"
+		onclick_actions="
+			if (layer[map__wrapper].state == 1,
+				callwith(layer[map__wrapper], expand);
+				delayedcall (0.6,
+					set_minus();
+				);
+			, layer[map__wrapper].state == 2,
+				callwith(layer[map__wrapper], compact);
+				delayedcall (0.6,
+					set_plus();
+				);
+			);
+		"
+	/>
+
+	<style name="expand__bar_1" style="plus_bar"
+		rotate="90"
+
+		turn_in="
+			tween(rotate, 0, 0.25, easeInOutQuad);
+		"
+		turn_out="
+			tween(rotate, 90, 0.25, easeInOutQuad);
+		"
+
+		press="
+			if (rotate == 90,
+				set(ox, 1);
+			,
+				set(oy, 1);
+			);
+		"
+		unpress="
+			if (rotate == 90,
+				set(ox, 0);
+			,
+				set(oy, 0);
+			);
+		"
+	/>
+
+	<style name="expand__bar_2" style="invisible_content|visible|plus_bar"
+		press="
+			set(oy, 1);
+		"
+		unpress="
+			set(oy, 0);
+		"
+	/>
+	
+</krpano>

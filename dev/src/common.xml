@@ -1,0 +1,59 @@
+<krpano>
+
+	<plugin 
+		url="../plugins/moretweentypes.js"
+		preload="true"
+	/>
+	
+	<!--
+		%1 - scene
+		%2 - vars
+	-->
+	<action name="load_scene">
+	
+		loadscene(%1, %2, MERGE, BLEND(0.5, linear));
+		
+	</action>
+
+	<action name="register_backdropblur" type="Javascript">
+	   let backdropblur = 0.0;
+	   caller.registerattribute('backdropblur', 0.0, function(v) {
+	      backdropblur = +v;
+	      if (isNaN(backdropblur)) backdropblur = 0.0;
+	      let style = caller.sprite.style;
+	      style[`backdrop-filter`] = style[`-webkit-backdrop-filter`] = `blur(${backdropblur}px)`;
+	    }, function() {return backdropblur});
+	</action>
+
+	<style name="backdropblur"
+		onloaded.addevent="register_backdropblur()"
+	/>
+
+	<style name="interactive_area"
+		url="get:data[void].content"
+
+		width="100%" height="100%" 
+
+		ondown="
+			callwith(layer[get(parent)], ondown);
+		"
+		onup="
+			callwith(layer[get(parent)], onup);
+		"
+		onover="
+			callwith(layer[get(parent)], onover);
+		"
+		onout="
+			callwith(layer[get(parent)], onout);
+		"
+		onclick="
+			delayedcall(0.1,
+				onclick_actions();
+			);
+		"
+		onclick_actions="
+			callwith(layer[get(parent)], onclick_actions);
+		"
+	/>
+	
+</krpano>

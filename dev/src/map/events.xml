@@ -1,0 +1,15 @@
+<krpano>
+	
+	<events name="map__events" keep="true"
+		
+		onresize="
+			callwith(layer[map__wrapper], resize);
+		"
+		onclick="
+			if (layer[map__wrapper].state == 2,
+				callwith(layer[map__expand], onclick_actions);
+			);
+		"
+	/>
+	
+</krpano>

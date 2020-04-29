@@ -1,0 +1,11 @@
+<krpano>
+	
+	<layer name="map__wrapper" style="map__wrapper">
+		<layer name="map__expand" style="map__expand">
+			<layer name="expand__bar_1" style="expand__bar_1"/>
+			<layer name="expand__bar_2" style="expand__bar_2"/>
+			<layer name="expand__toucharea" style="interactive_area"/>
+		</layer>
+	</layer>	
+
+</krpano>

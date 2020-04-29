@@ -1,0 +1,11 @@
+<krpano>
+	
+	<action name="startup" autorun="onstart">
+
+		js( getKRPano() );
+	
+		load_scene(get(startscene));
+			
+	</action>	
+	
+</krpano>
