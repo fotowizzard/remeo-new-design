@@ -1,4 +1,4 @@
-const sourceFiles = [
+ const sourceFiles = [
 	'src/devlib2.xml',
 	'src/common.xml',
 	'src/startup.xml',

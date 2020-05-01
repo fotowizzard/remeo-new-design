@@ -1,6 +1,8 @@
-<krpano>
+<krpano
+	current_floor_map=""
+>
 	
-	<style name="map__wrapper" style="invisible_content|visible|backdropblur" keep="true"
+	<style name="map__container" style="invisible_content|visible|backdropblur" keep="true"
 		type="container"
 
 		align="righttop" x="0" y="0"
@@ -17,27 +19,48 @@
 		state="1"
 
 		resize="
-			copy(width_expanded, stagewidth);
-			calc(height_expanded, stageheight / 2);
 
-			if (state == 2,
-				copy(width, width_expanded);
-				copy(height, height_expanded);
+			copy(width_expanded, stagewidth);
+
+			callwhen(layer[get(current_floor_map)].pixelheight GT 0,
+				calc(height_expanded, (stagewidth - 20) / layer[get(current_floor_map)].aspect + 70);
+
+				if (state == 2,
+					copy(width, width_expanded);
+					copy(height, height_expanded);
+				);
+
+				copy(this, layer[get(name)]);
+				callwith(layer[map__scrollarea], 
+					set_width_height(calc(layer[get(current_floor_map)].aspect * (this.height - 50)), calc(this.height - 50));
+				);	
 			);
 		"
 
 		expand="
 			set(state, 2);
 			tween(width|height, calc(width_expanded + '|' + height_expanded), 0.5, easeInOutQuad);
+
+			copy(this, layer[get(name)]);
+			callwith(layer[map__scrollarea], 
+				expand(calc(this.width_expanded - 20), calc(this.height_expanded - 50));
+			);
 		"
 		compact="
 			set(state, 1);
 			tween(width|height, calc(width_compact + '|' + height_compact), 0.5, easeInOutQuad);
+
+			copy(this, layer[get(name)]);
+			callwith(layer[map__scrollarea], 
+				compact(calc(layer[get(current_floor_map)].aspect * (this.height_compact - 50)), calc(this.height_compact - 50));
+			);
 		"
 	/>
 
-	<style name="map__expand"
+	<style name="map__expand" style="backdropblur"
 		type="container"
+
+		backdropblur="2"
 
 		align="leftbottom" x="10" y="10"
 
@@ -74,13 +97,13 @@
 			callwith(layer[expand__bar_2], show);
 		"
 		onclick_actions="
-			if (layer[map__wrapper].state == 1,
-				callwith(layer[map__wrapper], expand);
+			if (layer[map__container].state == 1,
+				callwith(layer[map__container], expand);
 				delayedcall (0.6,
 					set_minus();
 				);
-			, layer[map__wrapper].state == 2,
-				callwith(layer[map__wrapper], compact);
+			, layer[map__container].state == 2,
+				callwith(layer[map__container], compact);
 				delayedcall (0.6,
 					set_plus();
 				);
@@ -120,6 +143,50 @@
 		"
 		unpress="
 			set(oy, 0);
+		"
+	/>
+
+	<style name="map__wrapper"
+		type="container" maskchildren="true"
+
+		align="bottom" y="10"
+
+		bgcolor="0x000000" bgalpha="0.0" bgborder="1 0xffffff 0.1"
+
+		width="-20" height="-50"
+	/>
+
+	<style name="map__scrollarea"
+		url="../plugins/scrollarea.js"
+
+		align="center"
+
+		direction="h" overscroll="0.75"
+
+		height="100%"
+
+		resize="
+			copy(width, layer[get(parent)].pixelwidth);
+		"
+
+		set_width_height="
+			set(width, %1);
+			set(height, %2);
+		"
+
+		expand="
+			tween(width, %1, 0.5, easeInOutQuad);
+			tween(height, %2, 0.5, easeInOutQuad,
+				delayedcall (0.25,
+					set(direction, null);
+				);
+			);
+		"
+		compact="
+			tween(width, %1, 0.5, easeInOutQuad);
+			tween(height, %2, 0.5, easeInOutQuad,
+				set(direction, 'h');
+			);
 		"
 	/>
 	

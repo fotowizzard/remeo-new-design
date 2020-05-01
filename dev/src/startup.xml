@@ -3,6 +3,9 @@
 	<action name="startup" autorun="onstart">
 
 		js( getKRPano() );
+		js( setKRPanoConsole(450, 18) );
+
+		load_floor_maps();
 	
 		load_scene(get(startscene));
 			

@@ -3,10 +3,10 @@
 	<events name="map__events" keep="true"
 		
 		onresize="
-			callwith(layer[map__wrapper], resize);
+			callwith(layer[map__container], resize);
 		"
 		onclick="
-			if (layer[map__wrapper].state == 2,
+			if (layer[map__container].state == 2,
 				callwith(layer[map__expand], onclick_actions);
 			);
 		"

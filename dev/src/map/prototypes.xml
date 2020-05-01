@@ -16,5 +16,35 @@
 			set(bgcolor, 0xffffff);
 		"
 	/>
+
+	<style name="floor_layer" keep="true"
+
+		handcursor="false"
+
+		parent="map__scrollarea"
+
+		aspect="0"
+
+		linked_db_item=""
+		
+		floor_layer="
+			newlayer(%1, %2);
+
+			set(this.linked_db_item, %3);
+			copy(this.url, map_floor[%3].url);
+		"
+		show_before="
+			resize();
+		"
+		resize=""
+		onloaded="
+			callwhen(pixelwidth GT 0,
+				calc(aspect, pixelwidth / pixelheight);
+
+				set(width, 100%);
+				set(height, 100%);
+			);
+		"
+	/>	
 	
 </krpano>

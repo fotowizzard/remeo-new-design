@@ -1,6 +1,9 @@
 <krpano>
 	
-	<layer name="map__wrapper" style="map__wrapper">
+	<layer name="map__container" style="map__container">
+		<layer name="map__wrapper" style="map__wrapper">
+			<layer name="map__scrollarea" style="map__scrollarea"/>
+		</layer>
 		<layer name="map__expand" style="map__expand">
 			<layer name="expand__bar_1" style="expand__bar_1"/>
 			<layer name="expand__bar_2" style="expand__bar_2"/>

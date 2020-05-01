@@ -1,5 +1,41 @@
 <krpano>
 	
+	<action name="load_floor_maps">
 	
+		for(set(i, 0), i LT map_floor.count, inc(i),
+			add_new_floor_layer(get(i));
+		);
+
+		set_floor(1);
+		
+	</action>
+
+	<action name="add_new_floor_layer">
+
+		calc(map_floor[%1].linked_layer, 'map__' + map_floor[%1].name);
+	
+		new(invisible_content|floor_layer,
+			get(map_floor[%1].linked_layer),
+			%1
+		);
+		
+	</action>
+
+	<!-- %1 – floor number -->
+	<action name="set_floor">
+	
+		if (current_floor_map,
+			callwith(layer[get(current_floor_map)], hide);
+		);
+
+		copy(current_floor_map, map_floor[calc(%1 - 1)].linked_layer);
+
+		callwhen(layer[get(current_floor_map)].pixelwidth GT 0,
+			callwith(layer[get(current_floor_map)], show);
+		);
+
+		callwith(layer[map__container], resize);
+		
+	</action>
 	
 </krpano>
