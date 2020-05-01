@@ -9,6 +9,7 @@
 			<layer name="expand__bar_2" style="expand__bar_2"/>
 			<layer name="expand__toucharea" style="interactive_area"/>
 		</layer>
+		<layer name="map__floors" style="map__floors"/>
 	</layer>	
 
 </krpano>

@@ -1,7 +1,7 @@
 ﻿<krpano version="1.20" title="Virtual Tour">
 
-	<include url="../app/kml/app.xml" />
-	<include url="settings.xml" />
+	<include url="../app/kml/app.xml%$_timestamp%" />
+	<include url="settings.xml%$_timestamp%" />
 
 	<scene name="scene_entry" title="entry" onstart="" thumburl="panos/entry.tiles/thumb.jpg" lat="" lng="" heading="">
 

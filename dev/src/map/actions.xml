@@ -6,8 +6,10 @@
 			add_new_floor_layer(get(i));
 		);
 
-		set_floor(1);
-		
+		callwhen(layer[map__floors].width GT 0,
+			js( floorButtonClick('floor-button-1', 1) );
+		);
+
 	</action>
 
 	<action name="add_new_floor_layer">
@@ -23,19 +25,22 @@
 
 	<!-- %1 – floor number -->
 	<action name="set_floor">
-	
-		if (current_floor_map,
-			callwith(layer[get(current_floor_map)], hide);
-		);
-
-		copy(current_floor_map, map_floor[calc(%1 - 1)].linked_layer);
-
-		callwhen(layer[get(current_floor_map)].pixelwidth GT 0,
-			callwith(layer[get(current_floor_map)], show);
-		);
-
-		callwith(layer[map__container], resize);
 		
+		/* check if current floor differs from argument OF current_floor_map is not set  */
+		if (layer[get(current_floor_map)].linked_floor != %1 OR !current_floor_map,
+			if (current_floor_map,
+				callwith(layer[get(current_floor_map)], hide);
+			);
+
+			copy(current_floor_map, map_floor[calc(%1 - 1)].linked_layer);
+
+			callwhen(layer[get(current_floor_map)].pixelwidth GT 0,
+				callwith(layer[get(current_floor_map)], show);
+			);
+
+			callwith(layer[map__container], resize);
+		);
+	
 	</action>
 	
 </krpano>

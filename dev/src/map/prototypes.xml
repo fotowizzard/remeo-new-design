@@ -19,19 +19,19 @@
 
 	<style name="floor_layer" keep="true"
 
-		handcursor="false"
-
 		parent="map__scrollarea"
 
 		aspect="0"
 
 		linked_db_item=""
+		linked_floor="0"
 		
 		floor_layer="
 			newlayer(%1, %2);
 
 			set(this.linked_db_item, %3);
 			copy(this.url, map_floor[%3].url);
+			copy(this.linked_floor, map_floor[%3].floor);
 		"
 		show_before="
 			resize();
@@ -44,6 +44,10 @@
 				set(width, 100%);
 				set(height, 100%);
 			);
+		"
+
+		onclick="
+			callwith(layer[map__expand], onclick_actions);
 		"
 	/>	
 	

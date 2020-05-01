@@ -3,7 +3,7 @@
 	accent_color="0xb37af8"
 >
 	
-	<map_floor name="floor1" url="floorplans/floor1.jpg" />
-	<map_floor name="floor2" url="floorplans/floor2.jpg" />
+	<map_floor name="floor1" floor="1" url="floorplans/floor1.jpg" />
+	<map_floor name="floor2" floor="2" url="floorplans/floor2.jpg" />
 	
 </krpano>

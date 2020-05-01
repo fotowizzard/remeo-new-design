@@ -23,7 +23,7 @@
 			copy(width_expanded, stagewidth);
 
 			callwhen(layer[get(current_floor_map)].pixelheight GT 0,
-				calc(height_expanded, (stagewidth - 20) / layer[get(current_floor_map)].aspect + 70);
+				calc(height_expanded, (stagewidth - 20) / layer[get(current_floor_map)].aspect + 80);
 
 				if (state == 2,
 					copy(width, width_expanded);
@@ -32,7 +32,7 @@
 
 				copy(this, layer[get(name)]);
 				callwith(layer[map__scrollarea], 
-					set_width_height(calc(layer[get(current_floor_map)].aspect * (this.height - 50)), calc(this.height - 50));
+					set_width_height(calc(layer[get(current_floor_map)].aspect * (this.height - 60)), calc(this.height - 60));
 				);	
 			);
 		"
@@ -43,7 +43,7 @@
 
 			copy(this, layer[get(name)]);
 			callwith(layer[map__scrollarea], 
-				expand(calc(this.width_expanded - 20), calc(this.height_expanded - 50));
+				expand(calc(this.width_expanded - 20), calc(this.height_expanded - 60));
 			);
 		"
 		compact="
@@ -52,7 +52,7 @@
 
 			copy(this, layer[get(name)]);
 			callwith(layer[map__scrollarea], 
-				compact(calc(layer[get(current_floor_map)].aspect * (this.height_compact - 50)), calc(this.height_compact - 50));
+				compact(calc(layer[get(current_floor_map)].aspect * (this.height_compact - 60)), calc(this.height_compact - 60));
 			);
 		"
 	/>
@@ -153,7 +153,7 @@
 
 		bgcolor="0x000000" bgalpha="0.0" bgborder="1 0xffffff 0.1"
 
-		width="-20" height="-50"
+		width="-20" height="-65"
 	/>
 
 	<style name="map__scrollarea"
@@ -187,6 +187,24 @@
 			tween(height, %2, 0.5, easeInOutQuad,
 				set(direction, 'h');
 			);
+		"
+	/>
+
+	<style name="map__floors"
+		type="text" interactivecontent="true"
+
+		bg="false"
+
+		align="righttop"
+		x="10" y="10"
+
+		css="
+			margin: 0;
+			font-size: 0;
+		"
+
+		onloaded="
+			js( initFloors() );
 		"
 	/>
 	

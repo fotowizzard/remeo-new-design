@@ -12,9 +12,10 @@
 ];
 
 const jsSources = [
-	'../dev/js/common.js'
+	'../dev/js/common.js',
+	'../dev/js/app.js'
 ];
 
-// const cssSources = [
-// 	'../dev/css/tour.css'
-// ];
+const cssSources = [
+	'../dev/css/tour.css'
+];

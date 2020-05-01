@@ -15,7 +15,10 @@
 
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 
+	<link rel="stylesheet" href="css/tour.css" >
+
 	<script type="text/javascript" src="js/common.js?t=<?php echo time(); ?>"></script>
+	<script type="text/javascript" src="js/app.js?t=<?php echo time(); ?>"></script>
 	<script type="text/javascript" src="js/source-merge.js?t=<?php echo time(); ?>"></script>
 	<script type="text/javascript" src="js/xml2json.min.js?t=<?php echo time(); ?>"></script>
 	<script type="text/javascript" src="js/vkbeautify.js?t=<?php echo time(); ?>"></script>
@@ -35,7 +38,7 @@
 			// сборка файлов
 			await mergeKRPanoSources(sourceFiles, '../app/kml/app.xml');
 			await mergeFiles(jsSources, '../app/js/js.js');
-			// await mergeFiles(cssSources, '../app/css/css.css');
+			await mergeFiles(cssSources, '../app/css/css.css');
 
 			// получение ссылки на файл тура
 			const documentURL = new URL(window.location);
