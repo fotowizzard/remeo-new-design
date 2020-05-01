@@ -24,7 +24,5 @@ function floorButtonClick(id, floor) {
 	krpano.currentFloorButton = e;
 	krpano.currentFloorButton.className = 'floor-button active';
 
-	console.log(krpano.currentFloorButton);
-
 	krpano.call(`set_floor(${floor})`);
 }
